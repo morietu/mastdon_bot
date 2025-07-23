@@ -21,7 +21,7 @@ def generate_daily_message():
 # 🐘 Mastodon API設定
 mastodon = Mastodon(
     access_token=os.environ.get("MASTODON_ACCESS_TOKEN"),
-    api_base_url=os.environ.get("MASTODON_API_BASE_URL")
+    api_base_url="https://mstdn.jp"
 )
 
 # 投稿メッセージ生成と投稿
