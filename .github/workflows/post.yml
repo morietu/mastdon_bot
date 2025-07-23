@@ -2,7 +2,12 @@
 name: Daily Mastodon Post
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:  #手動実行ボタンの表示
+  schedule:
+    - cron: '0 23 * * *'  # JST 08:00 に合わせる（UTC 23:00）
 
 jobs:
   post:
