@@ -7,14 +7,15 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # 🔮 GPTからメッセージ生成
 def generate_daily_message():
+    prompt = "元気が出る、キャッチーで短いSNS用メッセージを40文字以内で1つ作って"
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[
             { "role": "system", "content": "あなたは親しみやすくポジティブなSNS投稿Botです。" },
-            { "role": "user", "content": "朝のSNS投稿メッセージを120文字以内で作ってください。" }
+            { "role": "user", "content": prompt }
         ],
         max_tokens=100,
-        temperature=0.7
+        temperature=0.8
     )
     return response.choices[0].message.content.strip()
 
