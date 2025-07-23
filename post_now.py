@@ -29,7 +29,10 @@ mastodon = Mastodon(
 if __name__ == "__main__":
     try:
         message = generate_daily_message()
-        mastodon.toot(message)
-        print("✅ 投稿完了:", message)
+        if message and len(message.strip()) > 0:
+            mastodon.toot(message)
+            print("✅ 投稿完了:", message)
+        else:
+            print("⚠️ 空メッセージだったため投稿スキップ")
     except Exception as e:
         print("❌ 投稿失敗:", e)

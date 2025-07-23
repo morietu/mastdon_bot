@@ -4,33 +4,33 @@ on:
   push:
     branches:
       - develop
-  workflow_dispatch:  # 手動実行ボタンの表示
+  workflow_dispatch:  # ✅ 手動実行可能にする
   schedule:
-    - cron: '0 0 * * *'   # JST 09:00（朝の通勤・通学時間帯）
-    - cron: '0 5 * * *'   # JST 14:00（昼休み）
-    - cron: '0 9 * * *'   # JST 18:00（帰宅直前）
-    - cron: '0 12 * * *'  # JST 21:00（SNS閲覧が活発な時間）
-    - cron: '0 14 * * *'  # JST 23:00（夜のリラックスタイム）
+    - cron: '0 0 * * *'   # ✅ JST 09:00（朝の通勤・通学時間帯）
+    - cron: '0 5 * * *'   # ✅ JST 14:00（昼休み）
+    - cron: '0 9 * * *'   # ✅ JST 18:00（帰宅直前）
+    - cron: '0 12 * * *'  # ✅ JST 21:00（SNS活発）
+    - cron: '0 14 * * *'  # ✅ JST 23:00（リラックスタイム）
 
 jobs:
   post:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: ✅ リポジトリをチェックアウト
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: ✅ Pythonセットアップ（v3.11）
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
-      - name: Install dependencies
+      - name: ✅ 依存パッケージをインストール
         run: |
           pip install Mastodon.py
           pip install openai
 
-      - name: Run bot script
+      - name: ✅ Botスクリプトを実行
         env:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
